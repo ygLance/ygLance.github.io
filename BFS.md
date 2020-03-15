@@ -1,0 +1,108 @@
+# 广度优先搜索
+
+利用queue的BFS
+基本组成: <br>node结构,clear(),queue\<node\>,<br>存图(一维,二维,三维),与地图一致的vis访问控制,<br>BFS(),main(),路径记录
+
+**********
+## 模板
+
+```cpp
+#include<iostream>
+#include<queue>
+using namespace std;
+#define maxn 103
+char wpe[maxn][maxn];// 存图
+bool vis[maxn][maxn];//访问剪枝
+struct node{
+    int value;//节点标志,为搜索的值
+    int steps;//步数
+    node *ptr;//记录path时,指向上一个节点
+};
+
+void clear(node *t)//queue无法使用成员函数清空,使用swap换
+                   //成空队列,否则干扰下一次(因为每wos.empty())
+{
+    node tmp;
+    swap(tmp,t);
+}
+
+node Path[maxn****maxn];
+queue<node> wos;
+
+
+int bfs()
+{
+    while(!wos.empty()){
+        node tmp=wos.front();
+        wos.pop();
+
+        {;;;return steps;;;}//这里是搜索操作
+
+    }
+    return -1;
+}
+
+int main()
+{
+    while(;){
+        memset(vis,false,sizeof vis);
+        clear(wos);
+        ;;;
+
+
+        int ans=bfs();
+        if(ans==-1){;;}
+        else {;;}
+    }
+}
+```
+
+*****
+
+## 记录路径时的存path设施:
+
+```cpp
+    node.ptr;
+    node Path[...];
+
+    pos=-1;//第一次进去就++,需要为0
+
+    while(!wos.empty()){
+        pos++;
+        node tmp=wos.front();
+        wos.pop();
+
+        Path[pos]=tmp;//存父节点
+        ;;;;
+        tmp.ptr=&wos[pos]//子节点指向父节点
+        wos.push(tmp);//push子节点
+    }
+
+```
+
+******
+
+### 读取路径设施
+
+```cpp
+stack<node> as;//读取是从后往前读,必须用stack暂存之再pop
+
+void pt()//直接print
+{
+    node tmp=ans[pos];取出终点,往前回溯
+    as.push(tmp);
+
+    do{//至少做一次,将path读入stack
+        tmp=*(tmp.ptr);
+        as.push(tmp);
+    }while(tmp.ptr!=nullptr);//起点是nullptr
+
+    while(!as.empty()){//简单的输出
+        node tmpp=as.top();
+        cout<<;;
+        as.pop();
+    }
+    
+
+}
+```
