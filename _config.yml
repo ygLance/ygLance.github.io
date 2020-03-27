@@ -4,12 +4,12 @@
 # ---------------------------------------------------------------
 
 # Site
-title: Couragelogos
+title: NexT
 subtitle:
-description: wublub dubda
-author: Logos
+description:
+author: John Doe
 # Support language: de, en, fr-FR, id, ja, ko, pt-BR, pt, ru, zh-Hans, zh-hk, zh-tw
-language: zh-Hans
+language: en
 date_format: '%Y-%m-%d'
 
 # URL
@@ -32,7 +32,7 @@ paginate: 10
   #paginate_path: "/page:num/"
 
 # Handling Reading
-exclude: [".rvmrc", ".rbenv-version", "README.md", "Rakefile", "changelog.md", "Gemfile", "Gemfile.lock", "README_en.md"]
+exclude: [".rvmrc", ".rbenv-version", "README.md", "Rakefile", "changelog.md", "Gemfile", "Gemfile.lock", "README_en.md", "vendor"]
 
 # Separator
 #excerpt_separator: <!-- more -->
@@ -40,6 +40,8 @@ exclude: [".rvmrc", ".rbenv-version", "README.md", "Rakefile", "changelog.md", "
 # Code Highlighter
 ## 'pygments' is unsupported on GitHub Pages now.
 highlighter: rouge
+highlight:
+  line_number: true
 
 #### Markdown Processors
 ## 'redcarpet' is unsupported on GitHub Pages now.
@@ -65,8 +67,7 @@ feed:
 # Plugins
 ## Docs: https://help.github.com/articles/configuring-jekyll-plugins/
 plugins:
-# jemoji conficts with toc in some no-ascii post
-# - jemoji
+ - jemoji
  - jekyll-sitemap
  - jekyll-feed
 
@@ -75,7 +76,7 @@ plugins:
 # ---------------------------------------------------------------
 
 # Put your favicon.ico into `assets/` directory.
-favicon: assets/portrait.jpg
+favicon: /assets/favicon.ico
 
 # Set default keywords (Use a comma to separate)
 keywords: "Jekyll, NexT"
@@ -83,10 +84,10 @@ keywords: "Jekyll, NexT"
 # Set rss to false to disable feed link.
 # Leave rss as empty to use site's feed link.
 # Set rss to specific value if you have burned your feed already.
-rss: false
+rss:
 
 # Specify the date when the site was setup
-since: 2018
+#since: 2015
 
 # icon between year and author @Footer
 authoricon: heart
@@ -118,10 +119,9 @@ index_with_subtitle: false
 menu:
   home: /
   #categories: /categories/
-  about: /about/
+  #about: /about/
   archives: /archives/
-  #tags: /tags/
-  #github: /github/
+  tags: /tags/
   #sitemap: /sitemap.xml
   #commonweal: /404.html
 
@@ -142,7 +142,6 @@ menu_icons:
   archives: archive
   sitemap: sitemap
   commonweal: heartbeat
-  #github : github
 
 
 
@@ -152,9 +151,9 @@ menu_icons:
 # ---------------------------------------------------------------
 
 # Schemes
-#scheme: Muse
+scheme: Muse #这个有大纲
 #scheme: Mist
-scheme: Pisces
+#scheme: Pisces
 
 
 # ---------------------------------------------------------------
@@ -214,10 +213,8 @@ font:
 # Social Links
 # Key is the link label showing to end users.
 # Value is the target link (E.g. GitHub: https://github.com/iissnan)
-social:
+#social:
   #LinkLabel: Link
-    GitHub: https://github.com/ygLance
-    School: https://github.com/
 
 
 # Social Links Icons
@@ -232,12 +229,11 @@ social_icons:
   GitHub: github
   Twitter: twitter
   Weibo: weibo
-  School: university
 
 
 # Sidebar Avatar
-in directory: 
-avatar: assets/portrait.jpg
+# in directory: /assets/images/avatar.gif
+#avatar:
 
 
 # Table Of Contents in the Sidebar
@@ -268,8 +264,8 @@ sidebar:
   #  - always  expand for all pages automatically
   #  - hide    expand only when click on the sidebar toggle icon.
   #  - remove  Totally remove sidebar including sidebar toggle.
-  #display: post
-  display: always
+  display: post
+  #display: always
   #display: hide
   #display: remove
 
@@ -366,7 +362,7 @@ highlight_theme: normal
 
 # MathJax Support
 mathjax:
-  enable: true
+  enable: false
   per_page: false
   cdn: //cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML
 
@@ -391,6 +387,32 @@ disqus:
   # count need to be false when hide is true
   hide: false
 
+# <wildfire>
+wildfire:
+  enable: false
+  # version - It's recommended to use the following versions.
+  loaderVersion: 1.2.5 # https://www.npmjs.com/package/wildfire-comment
+  useDev: true
+  version: 0.5.6 
+  # database config
+  databaseProvider: firebase # or wilddog
+  firebase: # your firebase config goes here ↓
+    apiKey: 
+    authDomain:
+    databaseURL:
+    projectId:
+    storageBucket:
+    messagingSenderId:
+  wilddog: # your wilddog config goes here ↓
+    siteId:
+  # other configs
+  theme: light # or dark
+  locale: en # or other locales, e.g. zh-CN
+  defaultAvatarURL: 
+# Any question? 
+# Raise an issue here: https://github.com/cheng-kang/wildfire/issues
+# </wildfire>
+
 # Hypercomments
 #hypercomments_id:
 
@@ -409,7 +431,16 @@ changyan:
 
 # Support for LiveRe comments system.
 # You can get your uid from https://livere.com/insight/myCode (General web site)
-livere_uid: MTAyMC8zMzU2Ny8xMDEyMg==
+#livere_uid: your uid
+
+# Support for gitalk comments system.
+gitalk:
+  enable: false
+  clientID: # 54730ddf7b9420460c03
+  clientSecret: # c05684701b25ff1c19ea0c01ce4d80c125e0707d
+  repo: # colingpt.github.io
+  owner: # colingpt
+  admin: # colingpt
 
 # Baidu Share
 # Available value:
@@ -555,7 +586,7 @@ algolia_search:
 
 # Local search
 local_search:
-  enable: true
+  enable: false
   # if auto, trigger search by changing input
   # if manual, trigger search by pressing enter key or search button
   trigger: auto
@@ -574,7 +605,7 @@ exturl: false
 #! ---------------------------------------------------------------
 
 # Motion
-use_motion: false
+use_motion: true
 
 # Fancybox
 fancybox: true
@@ -606,7 +637,7 @@ canvas_nest: false
 three_waves: false
 
 # canvas_lines
-canvas_lines: true
+canvas_lines: false
 
 # canvas_sphere
 canvas_sphere: false
