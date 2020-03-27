@@ -122,6 +122,7 @@ menu:
   #about: /about/
   archives: /archives/
   tags: /tags/
+  
   #sitemap: /sitemap.xml
   #commonweal: /404.html
 
@@ -227,7 +228,7 @@ social_icons:
   # Icon Mappings.
   # KeyMapsToSocialItemKey: NameOfTheIconFromFontAwesome
   GitHub: github
-  Twitter: twitter
+  #Twitter: twitter
   Weibo: weibo
 
 
