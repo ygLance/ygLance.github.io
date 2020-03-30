@@ -1,0 +1,106 @@
+I"�"<h1 id="广度优先搜索">广度优先搜索</h1>
+
+<p>利用queue的BFS
+基本组成:   node结构,  clear(),  queue&lt;node&gt;,  存图(一维,二维,三维),  与地图一致的vis访问控制,  BFS(),  main(),  路径记录
+<!--more-->
+<strong>**</strong><em>**</em></p>
+<h2 id="模板">模板</h2>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include&lt;iostream&gt;
+#include&lt;queue&gt;
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="cp">#define maxn 103
+</span><span class="kt">char</span> <span class="n">wpe</span><span class="p">[</span><span class="n">maxn</span><span class="p">][</span><span class="n">maxn</span><span class="p">];</span><span class="c1">// 存图</span>
+<span class="kt">bool</span> <span class="n">vis</span><span class="p">[</span><span class="n">maxn</span><span class="p">][</span><span class="n">maxn</span><span class="p">];</span><span class="c1">//访问剪枝</span>
+<span class="k">struct</span> <span class="n">node</span><span class="p">{</span>
+    <span class="kt">int</span> <span class="n">value</span><span class="p">;</span><span class="c1">//节点标志,为搜索的值</span>
+    <span class="kt">int</span> <span class="n">steps</span><span class="p">;</span><span class="c1">//步数</span>
+    <span class="n">node</span> <span class="o">*</span><span class="n">ptr</span><span class="p">;</span><span class="c1">//记录path时,指向上一个节点</span>
+<span class="p">};</span>
+
+<span class="kt">void</span> <span class="nf">clear</span><span class="p">(</span><span class="n">node</span> <span class="o">*</span><span class="n">t</span><span class="p">)</span><span class="c1">//queue无法使用成员函数清空,使用swap换</span>
+                   <span class="c1">//成空队列,否则干扰下一次(因为每wos.empty())</span>
+<span class="p">{</span>
+    <span class="n">node</span> <span class="n">tmp</span><span class="p">;</span>
+    <span class="n">swap</span><span class="p">(</span><span class="n">tmp</span><span class="p">,</span><span class="n">t</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">node</span> <span class="n">Path</span><span class="p">[</span><span class="n">maxn</span><span class="o">****</span><span class="n">maxn</span><span class="p">];</span>
+<span class="n">queue</span><span class="o">&lt;</span><span class="n">node</span><span class="o">&gt;</span> <span class="n">wos</span><span class="p">;</span>
+
+
+<span class="kt">int</span> <span class="nf">bfs</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="n">wos</span><span class="p">.</span><span class="n">empty</span><span class="p">()){</span>
+        <span class="n">node</span> <span class="n">tmp</span><span class="o">=</span><span class="n">wos</span><span class="p">.</span><span class="n">front</span><span class="p">();</span>
+        <span class="n">wos</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+
+        <span class="p">{;;;</span><span class="k">return</span> <span class="n">steps</span><span class="p">;;;}</span><span class="c1">//这里是搜索操作</span>
+
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">while</span><span class="p">(;){</span>
+        <span class="n">memset</span><span class="p">(</span><span class="n">vis</span><span class="p">,</span><span class="nb">false</span><span class="p">,</span><span class="k">sizeof</span> <span class="n">vis</span><span class="p">);</span>
+        <span class="n">clear</span><span class="p">(</span><span class="n">wos</span><span class="p">);</span>
+        <span class="p">;;;</span>
+
+
+        <span class="kt">int</span> <span class="n">ans</span><span class="o">=</span><span class="n">bfs</span><span class="p">();</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">ans</span><span class="o">==-</span><span class="mi">1</span><span class="p">){;;}</span>
+        <span class="k">else</span> <span class="p">{;;}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="记录路径时的存path设施">记录路径时的存path设施:</h2>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="n">node</span><span class="p">.</span><span class="n">ptr</span><span class="p">;</span>
+    <span class="n">node</span> <span class="n">Path</span><span class="p">[...];</span>
+
+    <span class="n">pos</span><span class="o">=-</span><span class="mi">1</span><span class="p">;</span><span class="c1">//第一次进去就++,需要为0</span>
+
+    <span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="n">wos</span><span class="p">.</span><span class="n">empty</span><span class="p">()){</span>
+        <span class="n">pos</span><span class="o">++</span><span class="p">;</span>
+        <span class="n">node</span> <span class="n">tmp</span><span class="o">=</span><span class="n">wos</span><span class="p">.</span><span class="n">front</span><span class="p">();</span>
+        <span class="n">wos</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+
+        <span class="n">Path</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span><span class="o">=</span><span class="n">tmp</span><span class="p">;</span><span class="c1">//存父节点</span>
+        <span class="p">;;;;</span>
+        <span class="n">tmp</span><span class="p">.</span><span class="n">ptr</span><span class="o">=&amp;</span><span class="n">wos</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span><span class="c1">//子节点指向父节点</span>
+        <span class="n">wos</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">tmp</span><span class="p">);</span><span class="c1">//push子节点</span>
+    <span class="p">}</span>
+
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="读取路径设施">读取路径设施</h3>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">stack</span><span class="o">&lt;</span><span class="n">node</span><span class="o">&gt;</span> <span class="n">as</span><span class="p">;</span><span class="c1">//读取是从后往前读,必须用stack暂存之再pop</span>
+
+<span class="kt">void</span> <span class="nf">pt</span><span class="p">()</span><span class="c1">//直接print</span>
+<span class="p">{</span>
+    <span class="n">node</span> <span class="n">tmp</span><span class="o">=</span><span class="n">ans</span><span class="p">[</span><span class="n">pos</span><span class="p">];</span><span class="err">取出终点</span><span class="p">,</span><span class="err">往前回溯</span>
+    <span class="n">as</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">tmp</span><span class="p">);</span>
+
+    <span class="k">do</span><span class="p">{</span><span class="c1">//至少做一次,将path读入stack</span>
+        <span class="n">tmp</span><span class="o">=*</span><span class="p">(</span><span class="n">tmp</span><span class="p">.</span><span class="n">ptr</span><span class="p">);</span>
+        <span class="n">as</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">tmp</span><span class="p">);</span>
+    <span class="p">}</span><span class="k">while</span><span class="p">(</span><span class="n">tmp</span><span class="p">.</span><span class="n">ptr</span><span class="o">!=</span><span class="nb">nullptr</span><span class="p">);</span><span class="c1">//起点是nullptr</span>
+
+    <span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="n">as</span><span class="p">.</span><span class="n">empty</span><span class="p">()){</span><span class="c1">//简单的输出</span>
+        <span class="n">node</span> <span class="n">tmpp</span><span class="o">=</span><span class="n">as</span><span class="p">.</span><span class="n">top</span><span class="p">();</span>
+        <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="p">;;</span>
+        <span class="n">as</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+    <span class="p">}</span>
+    
+
+<span class="p">}</span>
+</code></pre></div></div>
+:ET
