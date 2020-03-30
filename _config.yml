@@ -307,7 +307,7 @@ excerpt_description: true
 # Please use <!-- more --> in the post to control excerpt accurately.
 auto_excerpt:
   enable: false
-  length: 150
+  length: 60
 
 # Post meta display settings
 post_meta:
@@ -364,7 +364,7 @@ highlight_theme: night eighties
 
 # MathJax Support
 mathjax:
-  enable: false
+  enable: true
   per_page: false
   cdn: //cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML
 
@@ -375,7 +375,7 @@ han: false
 #swiftype_key:
 
 # Baidu Analytics ID
-#baidu_analytics:
+baidu_analytics: ebaa0068a349e3371ad7b9bf0bd042bc
 
 # Duoshuo ShortName
 #duoshuo_shortname:
