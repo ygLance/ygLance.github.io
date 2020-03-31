@@ -13,7 +13,7 @@
 <span class="n">num</span><span class="o">/=</span><span class="mi">2</span><span class="p">;</span><span class="c1">//每条边都算了两次</span>
 </code></pre></div></div>
 
-<p>但是:每个点要干什么,不就是和前面所有点作一次差,和后面所有点作一次查
+<p>但是:每个点要干什么,不就是和前面所有点作一次差,和后面所有点作一次差
 <!--more-->
 直接这样:</p>
 
