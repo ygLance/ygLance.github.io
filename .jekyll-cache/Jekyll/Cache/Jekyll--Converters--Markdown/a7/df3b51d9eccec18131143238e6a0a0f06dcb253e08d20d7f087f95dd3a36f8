@@ -1,0 +1,40 @@
+I"<h1 id="序列自动机">序列自动机</h1>
+<hr />
+
+<p>通过一个预处理,
+对子序列实现$O(n)$的查询</p>
+
+<p>注意,使用getchar()时必须清空缓冲
+<!--more-->
+——</p>
+
+<h2 id="预处理">预处理</h2>
+
+<p>开一个数组$next[len][26]$</p>
+
+<p>从后往前扫一遍,数组记录从这点开始,下一个此种字符出现的位置:</p>
+
+<p>(最后一个数据默认是0,0,0,0….这个next数组编号从1其,0位存放每个字母出现的第一个位置)</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">--</span><span class="p">)</span>
+    <span class="p">{</span>
+    	<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">j</span><span class="o">&lt;=</span><span class="mi">25</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="n">nex</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">nex</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">];</span> 
+    	<span class="n">nex</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="sc">'a'</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+    <span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="简单查询">简单查询</h2>
+
+<p>初始位置设置为0,开始逐个查询子串中的每一个字符,(注意是子串不是连续子串)</p>
+
+<p>显然,如果$next[i][ch]$为0(这个0是一开始的初始值),即后面再也没有这个字符了,即匹配失败,否则,更新下一次查询位置为这个值,查询下一个字符的位置.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">while</span><span class="p">(</span><span class="n">n</span><span class="o">--</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="kt">int</span> <span class="n">f</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span><span class="n">p</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="c1">//p为位置</span>
+		<span class="k">while</span><span class="p">((</span><span class="n">c</span> <span class="o">=</span> <span class="n">getchar</span><span class="p">())</span> <span class="o">!=</span> <span class="sc">'\n'</span><span class="p">)</span>  <span class="c1">//子串不存</span>
+			<span class="k">if</span><span class="p">((</span><span class="n">p</span> <span class="o">=</span> <span class="n">nex</span><span class="p">[</span><span class="n">p</span><span class="p">][</span><span class="n">c</span><span class="o">-</span><span class="sc">'a'</span><span class="p">])</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="n">f</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span><span class="c1">//标志失败</span>
+	<span class="p">}</span>
+</code></pre></div></div>
+
+:ET

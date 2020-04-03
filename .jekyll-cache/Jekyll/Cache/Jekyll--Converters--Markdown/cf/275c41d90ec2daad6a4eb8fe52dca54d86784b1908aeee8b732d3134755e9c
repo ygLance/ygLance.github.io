@@ -1,4 +1,4 @@
-I"�<h1 id="线性同余方程">线性同余方程</h1>
+I"�%<h1 id="线性同余方程">线性同余方程</h1>
 
 <hr />
 
@@ -72,7 +72,7 @@
 
 <p>(n即为gcd)我们得到$mx+ny=n$这个方程<del>,枚举求此不定方程的解,每一组解通过上面的递推式可得原方程….</del></p>
 
-<p>我呸! 脑子有问题,显然有一组解<script type="math/tex">\begin{cases}x=0\\y=1\end{cases}</script>,你要去枚举不等于没求嘛,直接枚举原来的不一样吗.这样我们就求出了一组特解,通过此特解,显然$\begin{cases}x=x_0+bt\ y=y_0-at\end{cases}$$即为全部解(有无数个的)</p>
+<p>我呸! 脑子有问题,显然有一组解<script type="math/tex">\begin{cases}x=0\\ y=1\end{cases}</script>,你要去枚举不等于没求嘛,直接枚举原来的不一样吗.这样我们就求出了一组特解,通过此特解,显然<script type="math/tex">\begin{cases}x=x_0+bt\\ y=y_0-at\end{cases}</script>即为全部解(有无数个的)</p>
 
 <h3 id="扩欧的实现">扩欧的实现</h3>
 
@@ -81,7 +81,7 @@
 <span class="p">{</span>
     <span class="k">if</span><span class="p">(</span><span class="n">b</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span>
     <span class="p">{</span>
-        <span class="n">x</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+        <span class="n">x</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="c1">//这对数据对应b==0的数据</span>
         <span class="k">return</span> <span class="n">a</span><span class="p">;</span>  <span class="c1">//到达递归边界开始向上一层返回</span>
     <span class="p">}</span>
     <span class="kt">int</span> <span class="n">r</span><span class="o">=</span><span class="n">exgcd</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="n">a</span><span class="o">%</span><span class="n">b</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">);</span>
@@ -93,4 +93,15 @@
 </code></pre></div></div>
 
 <p>这段代码的含义,首先,用欧几里得算法求出gcd,然后一层层的往回退,第一层是那组特解0和1,来时,一层进行一次ab到ab的映射,回时,一层进行一次xy到xy的映射(我们上面求出来了!)最终xy与调用他的那个ab匹配(显然的,0和1就是匹配最后那组的)这样,回到最外层的流中,执行完求r后,xy和b,a%b匹配(dp的样子),完成最后几句,xy的值与形参ab匹配,函数结束.得到了gcd和一组特解xy.</p>
+
+<h3 id="获取最小正整数解">获取最小正整数解</h3>
+
+<p>显然求取此类不定方程时很多要求是正整数解,而我们得到的往往有负数,显然$x=x+bt$,$y=y-at$也是$ax+by=gcd$的解,且其中t可以为任意实数,然而我们不需要从这里开始约束(这样会少掉很多解,几乎必定丢掉我们要的最小正整数解),因为只要$ax+by=m$有正整数解就行了,因此我们先把得到的xy乘上$m/gcd$对现在的方程,我们讨论其整数解.</p>
+
+<p>显然$x=x+bt$和$y=y-at$这组解中的ba确实是整数,但是过于”粗糙”,要知道,这组通解必然以此为周期跳动,为了得到最小正整数解(其实可能只是为了得到正整数解,因为只有x最小时,y最有可能也是正数),我们需要一组尽可能小的整数,显然就是$b/gcd$和$a/gcd$</p>
+
+<p>得到通解<script type="math/tex">\begin{cases}x=x+k*b/gcd\\ y=y-k*a/gcd\end{cases}</script></p>
+
+<p>此时xy有最小的变化周期,如上所述,为了最可能,让x最小,显然我们直接用b/gcd取模就可以,考虑到负数情况(c++使用的截断除法,使得对负数取模得到最大负整数解)和正数的通用,我们写作$x=(x\%t+t)%t$,其中t是b/gcd.这样必然得到位于0-b/gcd的x,也是最终的结果,y带入解出即可,如果这个y还是负的,那就没有正整数解.
+你猜为什么都要求x为最小正整数,很多时候甚至不要求y呢,因为同余方程根本没有y:)</p>
 :ET
