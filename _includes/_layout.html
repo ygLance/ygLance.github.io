@@ -8,8 +8,6 @@
 {% if site.use_motion %}
   {% assign html_class = html_class | append: ' use-motion' %}
 {% endif %}
-<html style="filter: progid:DXImageTransform.Microsoft.BasicImage(grayscale=1);-webkit-filter: grayscale(100%);">
-
 <html class="{{ html_class | downcase }}" lang="{{ site.language }}">
 <head>
   {% include _partials/head.html %}
